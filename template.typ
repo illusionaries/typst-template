@@ -79,6 +79,13 @@
     ]
   }
 
+  show math.equation.where(block: true): it => {
+    block(width: 100%, inset: 0em, [
+      #set align(center)
+      #it
+    ])
+  }
+
   doc
 }
 
