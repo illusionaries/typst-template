@@ -101,3 +101,28 @@
     }
   }))
 }
+
+#let max-height-image(..args, max-height: 250pt) = {
+  layout(size => {
+    let temp = image(..args)
+    let (height,) = measure(width: size.width, temp)
+    if (height <= max-height) {
+      temp
+    } else {
+      image(..args, height: max-height)
+    }
+  })
+}
+
+
+#let max-width-image(..args, max-width: 250pt) = {
+  layout(size => {
+    let temp = image(..args)
+    let (width,) = measure(height: size.height, temp)
+    if (width <= max-width) {
+      temp
+    } else {
+      image(..args, width: max-width)
+    }
+  })
+}
