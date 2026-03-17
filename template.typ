@@ -86,6 +86,14 @@
     ])
   }
 
+  // CJK characters emphasized by skewing
+  show emph: it => {
+    show regex(
+      "[\\u1100-\\u11ff\\u2e80-\\u2e99\\u2e9b-\\u2ef3\\u2f00-\\u2fd5\\u2ff0-\\u303f\\u3041-\\u3096\\u309d-\\u30ff\\u3105-\\u312f\\u3131-\\u318e\\u3190-\\u4dbf\\u4e00-\\u9fff\\ua960-\\ua97c\\uac00-\\ud7a3\\ud7b0-\\ud7c6\\ud7cb-\\ud7fb\\uf900-\\ufa6d\\ufa70-\\ufad9\\ufe10-\\ufe1f\\ufe30-\\ufe6f\\uff00-\\uffef]",
+    ): it => box(skew(it, ax: -12deg))
+    it
+  }
+
   doc
 }
 
