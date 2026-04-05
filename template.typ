@@ -39,7 +39,7 @@
   set table.hline(stroke: 0.25pt + gray)
   set table.vline(stroke: 0.25pt + gray)
   show table: set par(justify: false)
-  show table.cell: it => box(inset: (top: 0.25em, bottom: 0.25em), it)
+  show table.cell: it => align(it.align, block(inset: (top: 0.25em, bottom: 0.25em), it))
 
   let marker_color = luma(0, 35%)
 
