@@ -34,7 +34,7 @@
 
   show heading: set block(inset: (top: 0.5em, bottom: 0.25em))
 
-  show table.cell.where(y: 0): set text(weight: "bold")
+  show table.cell.where(y: 0): strong;
   set table(stroke: (_, y) => if y == 0 { (bottom: black + 0.5pt) })
   set table.hline(stroke: 0.25pt + gray)
   set table.vline(stroke: 0.25pt + gray)
