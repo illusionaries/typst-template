@@ -34,7 +34,7 @@
 
   show heading: set block(inset: (top: 0.5em, bottom: 0.25em))
 
-  show table.cell.where(y: 0): strong;
+  show table.cell.where(y: 0): strong
   set table(stroke: (_, y) => if y == 0 { (bottom: black + 0.5pt) })
   set table.hline(stroke: 0.25pt + gray)
   set table.vline(stroke: 0.25pt + gray)
@@ -133,4 +133,20 @@
       image(..args, width: max-width)
     }
   })
+}
+
+#let sans = it => {
+  set text(font: (
+    (name: "Libertinus Sans", covers: "latin-in-cjk"),
+    (name: "Source Han Sans SC"),
+  ))
+  it
+}
+
+#let serif = it => {
+  set text(font: (
+    (name: "Libertinus Serif", covers: "latin-in-cjk"),
+    (name: "Source Han Serif SC"),
+  ))
+  it
 }
