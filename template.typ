@@ -8,6 +8,7 @@
   reversed-title-style: false,
   list-markers: ([•], [‣], [–]),
   enum-numbering: "1.",
+  raw-block-annotations: true,
   doc,
 ) = {
   set page(paper: "a4", number-align: end, numbering: "1", header: context align(end, {
@@ -58,7 +59,7 @@
   show raw.where(block: true): it => {
     block(width: 100%, radius: 5pt, fill: luma(97%), inset: 10pt)[
       #it
-      #if it.lang != none {
+      #if it.lang != none and raw-block-annotations {
         let lang = syntax-names.at(it.lang, default: it.lang)
         place(end + top, align(start, text(fill: gray, size: 0.75em, lang)))
       }
