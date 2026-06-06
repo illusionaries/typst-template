@@ -8,7 +8,6 @@
   reversed-title-style: false,
   list-markers: ([•], [‣], [–]),
   enum-numbering: "1.",
-  raw-block-annotations: true,
   doc,
 ) = {
   set page(paper: "a4", number-align: end, numbering: "1", header: context align(end, {
@@ -59,7 +58,7 @@
   show raw.where(block: true): it => {
     block(width: 100%, radius: 5pt, fill: luma(97%), inset: 10pt)[
       #it
-      #if it.lang != none and raw-block-annotations {
+      #if it.lang != none {
         let lang = syntax-names.at(it.lang, default: it.lang)
         place(end + top, align(start, text(fill: gray, size: 0.75em, lang)))
       }
@@ -151,3 +150,40 @@
   ))
   it
 }
+
+#let gitinfo(data, file) = [
+  #set text(0.9em)
+  #set par(spacing: 0.8em)
+  #v(1em)
+  #block(fill: luma(99%), stroke: luma(90%), width: 100%, inset: 1em)[
+    #{
+      set par(spacing: 0.5em)
+      block[*原始 Git 提交记录*]
+      block[#text(0.8em)[#raw(file)]]
+    }
+    #v(0.4em)
+    #{
+      let commits = data
+        .split("<END_COMMIT>")
+        .map(x => x.trim())
+        .filter(x => x.len() > 0)
+        .map(x => {
+          let (hash, date, author, message) = x.split("<SECTION>")
+          let date-pattern = regex("(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})")
+          let (year, month, day, hour, minute, second) = date.match(date-pattern).captures.map(x => int(x))
+          let date = datetime(year: year, month: month, day: day, hour: hour, minute: minute, second: second)
+          (hash, date, author, message)
+        })
+
+      for (hash, date, author, message) in commits {
+        list[
+          #set par(spacing: 0.5em)
+          #block[*#message*]
+          #block[#text(0.8em)[
+            #date.display(), #author, #raw(hash)
+          ]]
+        ]
+      }
+    }
+  ]
+]
