@@ -80,13 +80,6 @@
     ]
   }
 
-  show math.equation.where(block: true): it => {
-    block(width: 100%, inset: 0em, [
-      #set align(center)
-      #it
-    ])
-  }
-
   // CJK characters emphasized by skewing
   show emph: it => {
     show regex(
@@ -94,7 +87,7 @@
     ): it => box(skew(it, ax: -12deg))
     it
   }
-
+  
   doc
 }
 
