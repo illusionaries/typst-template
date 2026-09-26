@@ -56,10 +56,10 @@
       slide-fn: (config: (:), repeat: auto, setting: body => body, composer: auto, body) => {
         slide(
           repeat: repeat,
-          config: config-page(
+          config: utils.merge-dicts(config-page(
             header: common-header,
             footer: common-footer,
-          ),
+          ), config),
           self => {
             block({
               set text(weight: "regular", size: 1.5em, fill: self.colors.primary)
